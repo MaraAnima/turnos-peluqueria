@@ -128,10 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch(URL, {
-      method: "POST",
-      body: JSON.stringify(data),
-    })
+    const params = new URLSearchParams(data).toString();
+
+    fetch(URL + "?" + params)
       .then((res) => res.json())
       .then((res) => {
         if (res.status === "error") {
