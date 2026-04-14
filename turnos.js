@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   const URL =
     "https://script.google.com/macros/s/AKfycbzo842JJ121XUsoDp9hvQdhSXYXGBY6yWdwkqqJzXOGQz15p0w8EzUkC1GxCnwUCyGwzQ/exec";
+
   const horariosBase = ["12:00", "14:00", "16:00", "18:00"];
 
   const app = document.getElementById("app-turnos");
 
-  // Render inicial
   app.innerHTML = `
     <div style="max-width:320px;margin:20px auto;font-family:Arial;background:#ffffff;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);">
       
@@ -58,8 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const fechaInput = document.getElementById("fecha");
   const horariosContainer = document.getElementById("horarios");
 
-  // Evento fecha
-  fechaInput.addEventListener("change", cargarHorarios);
+  // 🚫 Bloquear fechas pasadas
+  const hoy = new Date().toISOString().split("T")[0];
+  fechaInput.setAttribute("min", hoy);
+
+  // 📅 Cambio de fecha
+  fechaInput.addEventListener("change", () => {
+    const fecha = new Date(fechaInput.value);
+
+    if (fecha.getDay() === 0) {
+      horariosContainer.innerHTML = "🚫 Cerrado los domingos";
+      return;
+    }
+
+    cargarHorarios();
+  });
 
   function cargarHorarios() {
     const fecha = fechaInput.value;
@@ -71,8 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(URL + "?fecha=" + encodeURIComponent(fecha))
       .then((res) => res.json())
       .then((ocupados) => {
-        console.log("OCUPADOS:", ocupados);
-
         if (!Array.isArray(ocupados)) ocupados = [];
 
         horariosContainer.innerHTML = "";
@@ -90,7 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
           if (ocupados.includes(hora)) {
             btn.innerText += " ❌";
             btn.disabled = true;
-            btn.style.background = "#eee";
+            btn.style.background = "#ddd";
+            btn.style.textDecoration = "line-through";
+            btn.style.cursor = "not-allowed";
           } else {
             btn.onclick = () => {
               document.getElementById("hora").value = hora;
@@ -108,8 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
           horariosContainer.appendChild(btn);
         });
       })
-      .catch((err) => {
-        console.error("ERROR FETCH:", err);
+      .catch(() => {
         horariosContainer.innerHTML = "Error cargando horarios";
       });
   }
@@ -119,8 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const msg = document.getElementById("msg");
 
     const data = {
-      nombre: document.getElementById("nombre").value,
-      telefono: document.getElementById("telefono").value,
+      nombre: document.getElementById("nombre").value.trim(),
+      telefono: document.getElementById("telefono").value.trim(),
       fecha: document.getElementById("fecha").value,
       hora: document.getElementById("hora").value,
       servicio: document.getElementById("servicio").value,
@@ -128,8 +140,36 @@ document.addEventListener("DOMContentLoaded", function () {
       pelaje: document.getElementById("pelaje").value,
     };
 
-    if (!data.nombre || !data.telefono || !data.fecha || !data.hora) {
+    // 🔍 Validaciones
+    const nombreValido = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+    const telefonoValido = /^[0-9]+$/;
+
+    if (
+      !data.nombre ||
+      !data.telefono ||
+      !data.fecha ||
+      !data.hora ||
+      !data.servicio ||
+      !data.tamano ||
+      !data.pelaje
+    ) {
       msg.innerText = "Completá todos los datos";
+      return;
+    }
+
+    if (!nombreValido.test(data.nombre) || data.nombre.length < 2) {
+      msg.innerText = "Nombre inválido";
+      return;
+    }
+
+    if (!telefonoValido.test(data.telefono) || data.telefono.length < 6) {
+      msg.innerText = "Teléfono inválido";
+      return;
+    }
+
+    const fechaSeleccionada = new Date(data.fecha);
+    if (fechaSeleccionada.getDay() === 0) {
+      msg.innerText = "No trabajamos domingos";
       return;
     }
 
@@ -146,32 +186,23 @@ document.addEventListener("DOMContentLoaded", function () {
           msg.innerText = "❌ " + res.message;
         } else {
           msg.innerText = "✅ Turno reservado";
-          document.getElementById("hora").value = "";
-          document.querySelectorAll("#horarios button").forEach((b) => {
-            b.style.background = "";
-            b.style.color = "";
-          });
 
-          // 🔄 refrescar horarios
-          console.log("FECHA FRONT:", fechaInput.value);
-          const fechaActual = document.getElementById("fecha").value;
-
-          if (fechaActual) {
-            fetch(URL + "?fecha=" + encodeURIComponent(fechaActual))
-              .then((res) => res.json())
-              .then(() => {
-                cargarHorarios();
-              });
-          }
-          // 🔒 limpiar selección
+          // limpiar form
+          document.getElementById("nombre").value = "";
+          document.getElementById("telefono").value = "";
           document.getElementById("hora").value = "";
+          document.getElementById("servicio").value = "";
+          document.getElementById("tamano").value = "";
+          document.getElementById("pelaje").value = "";
+
+          // refrescar horarios
+          cargarHorarios();
         }
       })
       .catch(() => {
         msg.innerText = "Error al reservar";
       })
       .finally(() => {
-        // 🔓 volver a habilitar botón
         btn.disabled = false;
         btn.innerText = "Reservar";
       });
