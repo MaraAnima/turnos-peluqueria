@@ -2,90 +2,88 @@
 <html lang="es">
   <head>
     <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background:  #43c7cd;
-}
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: #43c7cd;
+      }
 
-.turnos-card {
-  width: 100%;
-  max-width: 320px;
-  aspect-ratio: 1 / 1;
-  margin: auto;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+      .turnos-card {
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 1 / 1;
+        margin: auto;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 18px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-.turnos-title {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #43c7cd;
-}
+      .turnos-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #43c7cd;
+      }
 
-.turnos-input,
-.turnos-select {
-  width: 100%;
-  padding: 10px;
-  margin: 4px 0;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-}
+      .turnos-input,
+      .turnos-select {
+        width: 100%;
+        padding: 10px;
+        margin: 4px 0;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+      }
 
-.turnos-horarios {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  margin: 8px 0;
-}
+      .turnos-horarios {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        margin: 8px 0;
+      }
 
-.turno-btn {
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: none;
-  background: #f1f1f1;
-  cursor: pointer;
-  font-weight: bold;
-}
+      .turno-btn {
+        padding: 8px 12px;
+        border-radius: 20px;
+        border: none;
+        background: #f1f1f1;
+        cursor: pointer;
+        font-weight: bold;
+      }
 
-.turno-btn.selected {
-  background: #43c7cd;
-  color: white;
-}
+      .turno-btn.selected {
+        background: #43c7cd;
+        color: white;
+      }
 
-.turno-btn.disabled {
-  background: #eee;
-  color: #999;
-  text-decoration: line-through;
-  cursor: not-allowed;
-}
+      .turno-btn.disabled {
+        background: #eee;
+        color: #999;
+        text-decoration: line-through;
+        cursor: not-allowed;
+      }
 
-.turnos-btn {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  background: #f9be3d;
-  font-weight: bold;
-  cursor: pointer;
-}
+      .turnos-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        border: none;
+        background: #f9be3d;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-.turnos-msg {
-  text-align: center;
-  font-size: 13px;
-}
-</style>
+      .turnos-msg {
+        text-align: center;
+        font-size: 13px;
+      }
+    </style>
     <meta charset="UTF-8" />
     <title>Turnos</title>
-    <link rel="stylesheet" href="styles.css"></link>;
-
   </head>
   <body style="margin: 0">
     <div id="app-turnos"></div>
