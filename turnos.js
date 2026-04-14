@@ -68,20 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     horariosContainer.innerHTML = "Cargando...";
 
-    fetch(URL + "?fecha=" + encodeURIComponent(fecha)) // ✅ CORRECTO
+    fetch(URL + "?fecha=" + encodeURIComponent(fecha))
       .then((res) => res.json())
       .then((ocupados) => {
-        console.log("RESPUESTA CRUDA:", text);
-
-        let ocupados;
-        try {
-          ocupados = JSON.parse(text);
-        } catch (e) {
-          console.error("NO ES JSON:", text);
-          horariosContainer.innerHTML = "Error de formato";
-          return;
-        }
-
         console.log("OCUPADOS:", ocupados);
 
         if (!Array.isArray(ocupados)) ocupados = [];
