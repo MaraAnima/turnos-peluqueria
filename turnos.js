@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const URL =
-    "https://script.google.com/macros/s/AKfycbxkQZJCmFD7EG3WwQ_4kkxtuamrB1kFtvSn2g4HfNk058uJRIWvxHsSTML8yVh9-CZ87A/exec";
+    "https://script.google.com/macros/s/AKfycbxxBjmsduCyLGoN-N74dHAbi8sPpf4c10PECpV7BCEY9xmWXxFCaZVljl9OYmK697t5JA/exec";
   const horariosBase = ["12:00", "14:00", "16:00", "18:00"];
 
   const app = document.getElementById("app-turnos");
@@ -113,6 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.getElementById("btnReservar").addEventListener("click", function () {
+    const btn = document.getElementById("btnReservar");
+    const msg = document.getElementById("msg");
+
     const data = {
       nombre: document.getElementById("nombre").value,
       telefono: document.getElementById("telefono").value,
@@ -124,9 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     if (!data.nombre || !data.telefono || !data.fecha || !data.hora) {
-      document.getElementById("msg").innerText = "Completá todos los datos";
+      msg.innerText = "Completá todos los datos";
       return;
     }
+
+    // 🔒 bloquear botón
+    btn.disabled = true;
+    btn.innerText = "Reservando...";
 
     const params = new URLSearchParams(data).toString();
 
@@ -134,14 +141,32 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((res) => res.json())
       .then((res) => {
         if (res.status === "error") {
-          document.getElementById("msg").innerText = "❌ " + res.message;
+          msg.innerText = "❌ " + res.message;
         } else {
-          document.getElementById("msg").innerText = "✅ Turno reservado";
-          cargarHorarios();
+          msg.innerText = "✅ Turno reservado";
+
+          // 🔄 refrescar horarios
+          console.log("Cargando horarios para:", fecha);
+          const fechaActual = document.getElementById("fecha").value;
+
+          if (fechaActual) {
+            fetch(URL + "?fecha=" + encodeURIComponent(fechaActual))
+              .then((res) => res.json())
+              .then(() => {
+                cargarHorarios();
+              });
+          }
+          // 🔒 limpiar selección
+          document.getElementById("hora").value = "";
         }
       })
       .catch(() => {
-        document.getElementById("msg").innerText = "Error al reservar";
+        msg.innerText = "Error al reservar";
+      })
+      .finally(() => {
+        // 🔓 volver a habilitar botón
+        btn.disabled = false;
+        btn.innerText = "Reservar";
       });
   });
 });
