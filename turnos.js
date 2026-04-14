@@ -144,6 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
           msg.innerText = "❌ " + res.message;
         } else {
           msg.innerText = "✅ Turno reservado";
+          document.getElementById("hora").value = "";
+          document.querySelectorAll("#horarios button").forEach((b) => {
+            b.style.background = "";
+            b.style.color = "";
+          });
 
           // 🔄 refrescar horarios
           console.log("Cargando horarios para:", fecha);
