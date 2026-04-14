@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="styles.css"></link>;
 document.addEventListener("DOMContentLoaded", function () {
   const URL =
     "https://script.google.com/macros/s/AKfycbzo842JJ121XUsoDp9hvQdhSXYXGBY6yWdwkqqJzXOGQz15p0w8EzUkC1GxCnwUCyGwzQ/exec";
