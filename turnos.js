@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     horariosContainer.innerHTML = "Cargando...";
 
-    fetch(URL + "?fecha=" + encodeURIComponent(fecha))
-      .then((res) => res.text())
-      .then((text) => {
+    fetch(URL + "?fecha=" + encodeURIComponent(fecha)) // ✅ CORRECTO
+      .then((res) => res.json())
+      .then((ocupados) => {
         console.log("RESPUESTA CRUDA:", text);
 
         let ocupados;
