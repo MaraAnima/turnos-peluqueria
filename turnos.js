@@ -83,7 +83,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetch(URL + "?fecha=" + encodeURIComponent(fecha))
       .then((res) => res.json())
-      .then((ocupados) => {
+      .then((ocupadosRaw) => {
+        if (!Array.isArray(ocupadosRaw)) ocupadosRaw = [];
+
+        // 🔥 normalizar horas a HH:MM
+        const ocupados = ocupadosRaw.map((h) => {
+          return String(h).substring(0, 5);
+        });
+
+        console.log("OCUPADOS NORMALIZADOS:", ocupados);
         if (!Array.isArray(ocupados)) ocupados = [];
 
         horariosContainer.innerHTML = "";
