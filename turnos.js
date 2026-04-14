@@ -69,8 +69,21 @@ document.addEventListener("DOMContentLoaded", function () {
     horariosContainer.innerHTML = "Cargando...";
 
     fetch(URL + "?fecha=" + encodeURIComponent(fecha))
-      .then((res) => res.json())
-      .then((ocupados) => {
+      .then((res) => res.text())
+      .then((text) => {
+        console.log("RESPUESTA CRUDA:", text);
+
+        let ocupados;
+        try {
+          ocupados = JSON.parse(text);
+        } catch (e) {
+          console.error("NO ES JSON:", text);
+          horariosContainer.innerHTML = "Error de formato";
+          return;
+        }
+
+        console.log("OCUPADOS:", ocupados);
+
         if (!Array.isArray(ocupados)) ocupados = [];
 
         horariosContainer.innerHTML = "";
@@ -107,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.error("ERROR FETCH:", err);
         horariosContainer.innerHTML = "Error cargando horarios";
       });
   }
