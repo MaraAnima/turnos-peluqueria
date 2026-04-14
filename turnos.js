@@ -93,12 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
           const btn = document.createElement("button");
           btn.innerText = hora;
 
-          btn.style.margin = "5px";
-          btn.style.padding = "10px";
-          btn.style.borderRadius = "6px";
-          btn.style.border = "1px solid #ccc";
-          btn.style.cursor = "pointer";
-
           btn.classList.add("turno-btn");
 
           if (ocupados.includes(hora)) {
