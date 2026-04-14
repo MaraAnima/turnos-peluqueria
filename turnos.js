@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const URL =
-    "https://script.google.com/macros/s/AKfycbzqyVJaOAy2VWsW7caIj6bHrvogPykBWml-PM54-ssTRZ9hmZTSuSMukajvNJJsFmdyuQ/exec";
+    "https://script.google.com/macros/s/AKfycbzo842JJ121XUsoDp9hvQdhSXYXGBY6yWdwkqqJzXOGQz15p0w8EzUkC1GxCnwUCyGwzQ/exec";
   const horariosBase = ["12:00", "14:00", "16:00", "18:00"];
 
   const app = document.getElementById("app-turnos");
