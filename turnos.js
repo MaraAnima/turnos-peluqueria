@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (ocupados.includes(hora)) {
             btn.innerText += " ❌";
             btn.disabled = true;
-            btn.style.background = "#ddd";
+            btn.classList.add("ocupado");
             btn.style.textDecoration = "line-through";
             btn.style.cursor = "not-allowed";
           } else {
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 b.style.color = "";
               });
 
-              btn.style.background = "#2e7d32";
+              btn.classList.add("activo");
               btn.style.color = "white";
             };
           }

@@ -1,0 +1,131 @@
+/* Fondo general */
+body {
+  background: linear-gradient(135deg, #43c7cd, #a6f1f4);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Card principal */
+.turnos-card {
+  max-width: 340px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Título */
+.turnos-card h3 {
+  text-align: center;
+  color: #43c7cd;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+/* Inputs y selects */
+.turnos-card input,
+.turnos-card select {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+/* Focus */
+.turnos-card input:focus,
+.turnos-card select:focus {
+  outline: none;
+  border-color: #43c7cd;
+  box-shadow: 0 0 0 3px rgba(67, 199, 205, 0.2);
+}
+
+/* Contenedor horarios */
+#horarios {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Botones de horarios */
+#horarios button {
+  margin: 5px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  background: #f1f1f1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+/* Hover */
+#horarios button:hover {
+  background: #43c7cd;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Seleccionado */
+#horarios button.activo {
+  background: #43c7cd;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ocupado */
+#horarios button.ocupado {
+  background: #eee;
+  color: #999;
+  text-decoration: line-through;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Botón reservar */
+#btnReservar {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: #f9be3d;
+  color: #333;
+  border: none;
+  border-radius: 14px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover botón */
+#btnReservar:hover {
+  background: #ffc94f;
+  transform: translateY(-2px);
+}
+
+/* Disabled */
+#btnReservar:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Mensajes */
+#msg {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
