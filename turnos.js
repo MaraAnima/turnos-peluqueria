@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const URL =
-    "https://script.google.com/macros/s/AKfycbxxBjmsduCyLGoN-N74dHAbi8sPpf4c10PECpV7BCEY9xmWXxFCaZVljl9OYmK697t5JA/exec";
+    "https://script.google.com/macros/s/AKfycbxOBwLYf4s9Q78yGvD65MIkscDbVpde4cApVm0ZYx2MRa3bNINA-BS-DASXaYNns-sICg/exec";
   const horariosBase = ["12:00", "14:00", "16:00", "18:00"];
 
   const app = document.getElementById("app-turnos");
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
 
           // 🔄 refrescar horarios
-          console.log("Cargando horarios para:", fecha);
+          console.log("FECHA FRONT:", fechaInput.value);
           const fechaActual = document.getElementById("fecha").value;
 
           if (fechaActual) {
