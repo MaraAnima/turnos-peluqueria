@@ -7,53 +7,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const app = document.getElementById("app-turnos");
 
   app.innerHTML = `
-    <div style="max-width:320px;margin:20px auto;font-family:Arial;background:#ffffff;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-      
-      <h3 style="text-align:center;margin-bottom:15px;">🐶 Reservar turno</h3>
+  <div class="turnos-card">
+    
+    <div class="turnos-title">🐶 Turnos Peluquería</div>
 
-      <input id="nombre" placeholder="Nombre"
-        style="width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;">
+    <input id="nombre" class="turnos-input" placeholder="Nombre">
+    <input id="telefono" class="turnos-input" placeholder="Teléfono">
 
-      <input id="telefono" placeholder="Teléfono"
-        style="width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;">
+    <input type="date" id="fecha" class="turnos-input">
 
-      <input type="date" id="fecha"
-        style="width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;">
+    <div id="horarios" class="turnos-horarios"></div>
 
-      <div id="horarios" style="margin:10px 0;text-align:center;"></div>
+    <input type="hidden" id="hora">
 
-      <input type="hidden" id="hora">
+    <select id="servicio" class="turnos-select">
+      <option value="">Servicio</option>
+      <option>Baño</option>
+      <option>Baño y corte</option>
+    </select>
 
-      <select id="servicio"
-        style="width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;">
-        <option value="">Servicio</option>
-        <option>Baño</option>
-        <option>Baño y corte</option>
-      </select>
+    <select id="tamano" class="turnos-select">
+      <option value="">Tamaño</option>
+      <option>Raza Pequeña</option>
+      <option>Raza Mediana</option>
+      <option>Raza Grande</option>
+    </select>
 
-      <select id="tamano"
-        style="width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;">
-        <option value="">Tamaño</option>
-        <option>Raza Pequeña</option>
-        <option>Raza Mediana</option>
-        <option>Raza Grande</option>
-      </select>
+    <select id="pelaje" class="turnos-select">
+      <option value="">Pelaje</option>
+      <option>Corto</option>
+      <option>Largo</option>
+    </select>
 
-      <select id="pelaje"
-        style="width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;">
-        <option value="">Pelaje</option>
-        <option>Corto</option>
-        <option>Largo</option>
-      </select>
+    <button id="btnReservar" class="turnos-btn">
+      Reservar
+    </button>
 
-      <button id="btnReservar"
-        style="width:100%;padding:12px;margin-top:10px;background:#2e7d32;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">
-        Reservar
-      </button>
+    <p id="msg" class="turnos-msg"></p>
 
-      <p id="msg" style="text-align:center;margin-top:10px;"></p>
-    </div>
-  `;
+  </div>
+`;
 
   const fechaInput = document.getElementById("fecha");
   const horariosContainer = document.getElementById("horarios");
@@ -106,26 +99,22 @@ document.addEventListener("DOMContentLoaded", function () {
           btn.style.border = "1px solid #ccc";
           btn.style.cursor = "pointer";
 
+          btn.classList.add("turno-btn");
+
           if (ocupados.includes(hora)) {
-            btn.innerText += " ❌";
+            btn.classList.add("disabled");
             btn.disabled = true;
-            btn.classList.add("ocupado");
-            btn.style.textDecoration = "line-through";
-            btn.style.cursor = "not-allowed";
           } else {
             btn.onclick = () => {
               document.getElementById("hora").value = hora;
 
-              document.querySelectorAll("#horarios button").forEach((b) => {
-                b.style.background = "";
-                b.style.color = "";
+              document.querySelectorAll(".turno-btn").forEach((b) => {
+                b.classList.remove("selected");
               });
 
-              btn.classList.add("activo");
-              btn.style.color = "white";
+              btn.classList.add("selected");
             };
           }
-
           horariosContainer.appendChild(btn);
         });
       })
