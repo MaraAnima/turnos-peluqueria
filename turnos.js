@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
   <!-- 🐶 PELAJE -->
-    <div class="turnos-title">Pelaje</div>
+    <div class="turnos-subtitle">Pelaje</div>
   <div class="cards-row" data-group="pelaje">
     <div class="card" data-value="Largo">
       <img src="pelolargo.png">
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
   <!-- 🐕 TAMAÑO -->
-      <div class="turnos-title">Tamaño</div >
+      <div class="turnos-subtitle">Tamaño</div >
 
   <div class="cards-row" data-group="tamano">
     <div class="card" data-value="Raza Pequeña">
