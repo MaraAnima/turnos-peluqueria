@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- 🐶 PELAJE -->
   <div class="cards-row" data-group="pelaje">
     <div class="card" data-value="Largo">
-      <img src="largo.png">
+      <img src="pelolargo.png">
       <span>Pelo largo</span>
     </div>
     <div class="card" data-value="Corto">
-      <img src="corto.png">
+      <img src="pelocorto.png">
       <span>Pelo corto</span>
     </div>
   </div>
@@ -31,15 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- 🐕 TAMAÑO -->
   <div class="cards-row" data-group="tamano">
     <div class="card" data-value="Raza Pequeña">
-      <img src="pequeno.png">
+      <img src="Peque.png">
       <span>Raza Pequeña</span>
     </div>
     <div class="card" data-value="Raza Mediana">
-      <img src="mediano.png">
+      <img src="Mediano.png">
       <span>Raza Mediana</span>
     </div>
     <div class="card" data-value="Raza Grande">
-      <img src="grande.png">
+      <img src="Grande.png">
       <span>Raza Grande</span>
     </div>
   </div>
@@ -52,11 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- ✂️ SERVICIO -->
   <div class="cards-row" data-group="servicio">
     <div class="card" data-value="Baño">
-      <img src="bano.png">
+      <img src="Baño.png">
       <span>Baño</span>
     </div>
     <div class="card" data-value="Baño y corte">
-      <img src="corte.png">
+      <img src="Corte.png">
       <span>Baño y Corte</span>
     </div>
   </div>
