@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
       !seleccion.tamano ||
       !seleccion.pelaje
     ) {
-      msg.innerText = "Completá todos los datos";
+      msg.innerText = "Todos los campos son obligatorios";
       return;
     }
 
