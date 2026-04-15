@@ -21,15 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="cards-row" data-group="pelaje">
     <div class="card" data-value="Largo">
       <img src="pelolargo.png">
-      <span>Pelo largo</span>
+      <span>Largo</span>
     </div>
     <div class="card" data-value="Corto">
       <img src="pelocorto.png">
-      <span>Pelo corto</span>
+      <span>Corto</span>
     </div>
   </div>
 
   <!-- 🐕 TAMAÑO -->
+      <div class="turnos-title">Tamaño</div >
+
   <div class="cards-row" data-group="tamano">
     <div class="card" data-value="Raza Pequeña">
       <img src="Peque.png">
