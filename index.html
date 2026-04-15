@@ -166,6 +166,32 @@
         border: 2px solid #43c7cd;
         color: #1f6f73;
       }
+      @media (max-width: 600px) {
+        .cards-row {
+          flex-direction: column;
+          align-items: stretch; /* que ocupen todo el ancho */
+          gap: 15px; /* más espacio entre tarjetas */
+        }
+
+        .card {
+          width: 100%; /* cada tarjeta ocupa el ancho completo */
+          padding: 15px;
+        }
+
+        .card img {
+          max-height: 100px; /* más grande para que sea legible */
+        }
+
+        .turnos-input {
+          font-size: 16px; /* inputs más grandes para dedos en móvil */
+          padding: 12px;
+        }
+
+        .turnos-btn {
+          font-size: 18px;
+          padding: 16px;
+        }
+      }
     </style>
     <meta charset="UTF-8" />
     <title>Turnos</title>
