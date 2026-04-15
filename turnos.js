@@ -66,7 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <button id="btnReservar" class="turnos-btn">Reservar</button>
   <p id="msg" class="turnos-msg"></p>
-
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="modal-close">&times;</span>
+    <p id="modal-text">Tu turno ha sido reservado</p>
+  </div>
+</div>
 </div>
 `;
   const seleccion = {
@@ -160,7 +165,20 @@ document.addEventListener("DOMContentLoaded", function () {
         horariosContainer.innerHTML = "Error cargando horarios";
       });
   }
+  const modal = document.getElementById("modal");
+  const modalText = document.getElementById("modal-text");
+  const modalClose = document.getElementById("modal-close");
 
+  function abrirModal(texto) {
+    modalText.innerText = texto;
+    modal.style.display = "flex";
+  }
+
+  modalClose.onclick = () => (modal.style.display = "none");
+
+  window.onclick = (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  };
   document.getElementById("btnReservar").addEventListener("click", function () {
     const btn = document.getElementById("btnReservar");
     const msg = document.getElementById("msg");
@@ -220,8 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.status === "error") {
           msg.innerText = "❌ " + res.message;
         } else {
-          msg.innerText = "✅ Turno reservado";
-
+          abrirModal("✅ Tu turno ha sido reservado");
           // limpiar form
           document.getElementById("nombre").value = "";
           document.getElementById("telefono").value = "";
@@ -235,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch(() => {
-        msg.innerText = "Error al reservar";
+        abrirModal("Error al reservar");
       })
       .finally(() => {
         btn.disabled = false;
