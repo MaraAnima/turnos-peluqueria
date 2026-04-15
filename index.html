@@ -85,6 +85,46 @@
         text-align: center;
         font-size: 13px;
       }
+      .cards-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 10px 0;
+      }
+
+      .card {
+        flex: 1;
+        background: #f1f1f1;
+        border-radius: 14px;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.2s;
+        border: 2px solid transparent;
+      }
+
+      .card img {
+        width: 100%;
+        max-height: 70px;
+        object-fit: contain;
+        transition: transform 0.2s;
+      }
+
+      .card span {
+        display: block;
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .card:hover img {
+        transform: scale(1.1);
+      }
+
+      .card.selected {
+        background: #dff6f7;
+        border: 2px solid #1f6f73;
+      }
     </style>
     <meta charset="UTF-8" />
     <title>Turnos</title>

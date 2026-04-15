@@ -7,47 +7,88 @@ document.addEventListener("DOMContentLoaded", function () {
   const app = document.getElementById("app-turnos");
 
   app.innerHTML = `
-  <div class="turnos-card">
-    
-    <div class="turnos-title">🐶 Turnos Peluquería</div>
+<div class="turnos-card">
 
+  <div class="turnos-title">AGENDA TURNO</div>
+
+  <div class="row">
     <input id="nombre" class="turnos-input" placeholder="Nombre">
     <input id="telefono" class="turnos-input" placeholder="Teléfono">
-
-    <input type="date" id="fecha" class="turnos-input">
-
-    <div id="horarios" class="turnos-horarios"></div>
-
-    <input type="hidden" id="hora">
-
-    <select id="servicio" class="turnos-select">
-      <option value="">Servicio</option>
-      <option>Baño</option>
-      <option>Baño y corte</option>
-    </select>
-
-    <select id="tamano" class="turnos-select">
-      <option value="">Tamaño</option>
-      <option>Raza Pequeña</option>
-      <option>Raza Mediana</option>
-      <option>Raza Grande</option>
-    </select>
-
-    <select id="pelaje" class="turnos-select">
-      <option value="">Pelaje</option>
-      <option>Corto</option>
-      <option>Largo</option>
-    </select>
-
-    <button id="btnReservar" class="turnos-btn">
-      Reservar
-    </button>
-
-    <p id="msg" class="turnos-msg"></p>
-
   </div>
-`;
 
+  <!-- 🐶 PELAJE -->
+  <div class="cards-row" data-group="pelaje">
+    <div class="card" data-value="Largo">
+      <img src="largo.png">
+      <span>Pelo largo</span>
+    </div>
+    <div class="card" data-value="Corto">
+      <img src="corto.png">
+      <span>Pelo corto</span>
+    </div>
+  </div>
+
+  <!-- 🐕 TAMAÑO -->
+  <div class="cards-row" data-group="tamano">
+    <div class="card" data-value="Raza Pequeña">
+      <img src="pequeno.png">
+      <span>Raza Pequeña</span>
+    </div>
+    <div class="card" data-value="Raza Mediana">
+      <img src="mediano.png">
+      <span>Raza Mediana</span>
+    </div>
+    <div class="card" data-value="Raza Grande">
+      <img src="grande.png">
+      <span>Raza Grande</span>
+    </div>
+  </div>
+
+  <!-- 📅 -->
+  <input type="date" id="fecha" class="turnos-input">
+  <div id="horarios" class="turnos-horarios"></div>
+  <input type="hidden" id="hora">
+
+  <!-- ✂️ SERVICIO -->
+  <div class="cards-row" data-group="servicio">
+    <div class="card" data-value="Baño">
+      <img src="bano.png">
+      <span>Baño</span>
+    </div>
+    <div class="card" data-value="Baño y corte">
+      <img src="corte.png">
+      <span>Baño y Corte</span>
+    </div>
+  </div>
+
+  <button id="btnReservar" class="turnos-btn">Reservar</button>
+  <p id="msg" class="turnos-msg"></p>
+
+</div>
+`;
+  const seleccion = {
+    pelaje: "",
+    tamano: "",
+    servicio: "",
+  };
+
+  document.querySelectorAll(".cards-row").forEach((row) => {
+    row.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const group = row.dataset.group;
+
+        // limpiar selección del grupo
+        row.querySelectorAll(".card").forEach((c) => {
+          c.classList.remove("selected");
+        });
+
+        card.classList.add("selected");
+        seleccion[group] = card.dataset.value;
+
+        console.log("SELECCION:", seleccion);
+      });
+    });
+  });
   const fechaInput = document.getElementById("fecha");
   const horariosContainer = document.getElementById("horarios");
 
@@ -126,9 +167,9 @@ document.addEventListener("DOMContentLoaded", function () {
       telefono: document.getElementById("telefono").value.trim(),
       fecha: document.getElementById("fecha").value,
       hora: document.getElementById("hora").value,
-      servicio: document.getElementById("servicio").value,
-      tamano: document.getElementById("tamano").value,
-      pelaje: document.getElementById("pelaje").value,
+      servicio: seleccion.servicio,
+      tamano: seleccion.tamano,
+      pelaje: seleccion.pelaje,
     };
 
     // 🔍 Validaciones
@@ -140,9 +181,9 @@ document.addEventListener("DOMContentLoaded", function () {
       !data.telefono ||
       !data.fecha ||
       !data.hora ||
-      !data.servicio ||
-      !data.tamano ||
-      !data.pelaje
+      !seleccion.servicio ||
+      !seleccion.tamano ||
+      !seleccion.pelaje
     ) {
       msg.innerText = "Completá todos los datos";
       return;
