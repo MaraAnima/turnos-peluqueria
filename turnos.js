@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <!-- 🐶 PELAJE -->
   <div class="cards-row" data-group="pelaje">
+  <div class="turnos-title">Pelaje</div>
+
     <div class="card" data-value="Largo">
       <img src="pelolargo.png">
       <span>Pelo largo</span>
