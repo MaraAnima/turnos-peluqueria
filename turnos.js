@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="turnos-title">AGENDA TURNO</div>
 
   <div class="row">
-    <input id="nombre" class="turnos-input" placeholder="Nombre">
-    <input id="telefono" class="turnos-input" placeholder="Teléfono">
+    <input id="nombre" class="turnos-input turnos" placeholder="Nombre">
+    <input id="telefono" class="turnos-input turnos" placeholder="Teléfono">
   </div>
 
   <!-- 🐶 PELAJE -->
